@@ -1,12 +1,11 @@
 import turtle
+import time
+import random
 
-colors = [
-    "#FF6F61",  # corail
-    "#FFD700",  # or
-    "#6A5ACD",  # bleu violacé
-    "#3CB371",  # vert menthe
-    "#FF69B4"   # rose vif
-]
+def random_color():
+    return "#{:06x}".format(random.randint(0, 0xFFFFFF))
+
+
 
 def draw_star(t, x, y, size, color):
     t.penup()
@@ -25,23 +24,32 @@ def main():
 
     t = turtle.Turtle()
     t.hideturtle()
-    t.speed(6)    
-    t.pensize(4)  
+    t.speed(6)
+    
 
-    size = 40
-    spacing = 30
-    baseline = -150
-    x = -300
+    while True:  
+        size = 40
+        spacing = 30
+        baseline = -150
+        x = -900
 
-    for i in range(5):
-        color = colors[i % len(colors)]
-        y = baseline + (size / 2)
-        draw_star(t, x, y, size, color)
-        next_size = int(size * 1.5)
-        x += (size / 2) + spacing + (next_size / 2)
-        size = next_size
+        for i in range(random.randint(5,10)):
+            taille = random.randint(0,25)
+            t.pensize(taille)
+            color = random_color()  
+            y = baseline + (size / 2)
+            draw_star(t, x, y, size, color)
+            next_size = int(size * 1.5)
+            x += (size / 2) + spacing + (next_size / 2)
+            size = next_size
+            
+                
+        time.sleep(1)  
+        #t.clear()      
 
     screen.mainloop()
 
 if __name__ == "__main__":
     main()
+    
+
